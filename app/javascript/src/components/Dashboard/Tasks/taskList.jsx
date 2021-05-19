@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox } from "neetoui";
+import { Checkbox, Badge, Avatar } from "neetoui";
 
 export default function TaskList({
   selectedTaskIds,
@@ -7,7 +7,7 @@ export default function TaskList({
   tasks = [],
 }) {
   return (
-    <div className="w-full px-4">
+    <div className="w-full px-14">
       <table className="nui-table nui-table--checkbox">
         <thead>
           <tr>
@@ -26,12 +26,12 @@ export default function TaskList({
                 }}
               />
             </th>
-            <th className="text-left">Title</th>
-            <th className="text-left">Description</th>
-            <th className="text-left">Tags</th>
-            <th className="text-left">Created Date</th>
-            <th className="text-left">Due Date</th>
-            <th className="text-left">Contact</th>
+            <th className="text-left text-gray-300">Title</th>
+            <th className="text-left text-gray-300">Description</th>
+            <th className="text-center text-gray-300">Tags</th>
+            <th className="text-center text-gray-300">Created Date</th>
+            <th className="text-center text-gray-300">Due Date</th>
+            <th className="text-center text-gray-300">Contact</th>
           </tr>
         </thead>
         <tbody>
@@ -59,11 +59,21 @@ export default function TaskList({
                 />
               </td>
               <td>
-                <div className="flex flex-row items-center justify-start text-gray-900">
+                <div className="flex text-purple-500 flex-row items-center justify-start text-gray-900">
                   {task.title}
                 </div>
               </td>
-              <td>{task.description}</td>
+              <td>{task.desc}</td>
+              <td className="text-center">
+                <Badge color="red">{task.tag}</Badge>
+              </td>
+              <td className="text-center">{task.date_created}</td>
+              <td className="text-center">
+                {task.due_date ? task.due_date : "--"}
+              </td>
+              <td className="flex flex-row items-center justify-center">
+                <Avatar size={36} contact={{ name: task.contact }} />
+              </td>
             </tr>
           ))}
         </tbody>

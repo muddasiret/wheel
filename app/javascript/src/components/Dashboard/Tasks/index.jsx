@@ -3,7 +3,7 @@ import { Button, PageLoader } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
-import TaskList from "./taskList";
+import TaskList from "./TaskList";
 
 const initTasks = [
   {
@@ -13,7 +13,7 @@ const initTasks = [
     tag: "Internal",
     due_date: "Apr 10, 2021",
     date_created: "Apr 10, 2021",
-    contact: "NS",
+    contact: "N S",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const initTasks = [
     tag: "Agile Workflow",
     due_date: "Apr 10, 2021",
     date_created: "Apr 10, 2021",
-    contact: "MA",
+    contact: "M A",
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const initTasks = [
     tag: "Bug",
     due_date: "",
     date_created: "Apr 10, 2021",
-    contact: "NS",
+    contact: "N S",
   },
 ];
 
