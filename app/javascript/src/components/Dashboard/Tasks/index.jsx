@@ -3,9 +3,11 @@ import { Button, PageLoader } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
+import TaskList from "./taskList";
 
 const initTasks = [
   {
+    id: 1,
     title: "Change support email",
     desc: "forward all internal mails...",
     tag: "Internal",
@@ -13,6 +15,7 @@ const initTasks = [
     contact: "NS",
   },
   {
+    id: 2,
     title: "Feedback",
     desc: "Feedback V1.0",
     tag: "Agile Workflow",
@@ -20,6 +23,7 @@ const initTasks = [
     contact: "MA",
   },
   {
+    id: 3,
     title: "Feedback Hover",
     desc: "Feedback V2.0......",
     tag: "Bug",
@@ -32,6 +36,7 @@ const Tasks = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [selectedTaskIds, setSelectedTaskIds] = useState([]);
 
   const fetchTasks = () => {
     setTasks(initTasks);
@@ -65,6 +70,11 @@ const Tasks = () => {
               onChange: e => setSearchTerm(e.target.value),
               clear: () => setSearchTerm(""),
             }}
+          />
+          <TaskList
+            selectedTaskIds={selectedTaskIds}
+            setSelectedTaskIds={setSelectedTaskIds}
+            tasks={tasks}
           />
         </>
       ) : (
