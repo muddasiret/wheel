@@ -4,6 +4,7 @@ import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./TaskList";
+import NewTaskPane from "./NewTaskPane";
 
 const initTasks = [
   {
@@ -40,6 +41,7 @@ const Tasks = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [tasks, setTasks] = useState([]);
   const [selectedTaskIds, setSelectedTaskIds] = useState([]);
+  const [showNewTaskPane, setShowNewTaskPane] = useState(false);
 
   const fetchTasks = () => {
     setTasks(initTasks);
@@ -59,7 +61,7 @@ const Tasks = () => {
         title="Tasks"
         actionBlock={
           <Button
-            onClick={() => null}
+            onClick={() => setShowNewTaskPane(true)}
             label="Add New Task"
             icon="ri-add-line"
           />
@@ -85,10 +87,15 @@ const Tasks = () => {
           image={EmptyNotesListImage}
           title="Looks like you don't have any tasks!"
           subtitle=""
-          primaryAction={() => null}
+          primaryAction={() => setShowNewTaskPane(true)}
           primaryActionLabel="Add New Task"
         />
       )}
+      <NewTaskPane
+        showPane={showNewTaskPane}
+        setShowPane={setShowNewTaskPane}
+        fetchTasks={fetchTasks}
+      />
     </>
   );
 };
