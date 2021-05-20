@@ -5,6 +5,7 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./TaskList";
 import NewTaskPane from "./NewTaskPane";
+import DeleteTaskAlert from "./DeleteTaskAlert";
 
 const initTasks = [
   {
@@ -42,6 +43,7 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTaskIds, setSelectedTaskIds] = useState([]);
   const [showNewTaskPane, setShowNewTaskPane] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   const fetchTasks = () => {
     setTasks(initTasks);
@@ -75,6 +77,19 @@ const Tasks = () => {
               onChange: e => setSearchTerm(e.target.value),
               clear: () => setSearchTerm(""),
             }}
+            deleteButtonProps={{
+              onClick: () => setShowDeleteAlert(true),
+              disabled: !selectedTaskIds.length,
+            }}
+            paginationProps={{ pageNo: 1, pageSize: 50, count: 241 }}
+            sortProps={{
+              options: [
+                { value: "Name", label: "Name" },
+                { value: "Tag", label: "Tag" },
+              ],
+              onClick: () => "",
+            }}
+            toggleFilter
           />
           <TaskList
             selectedTaskIds={selectedTaskIds}
@@ -96,6 +111,13 @@ const Tasks = () => {
         setShowPane={setShowNewTaskPane}
         fetchTasks={fetchTasks}
       />
+      {showDeleteAlert && (
+        <DeleteTaskAlert
+          selectedTaskIds={selectedTaskIds}
+          onClose={() => setShowDeleteAlert(false)}
+          refetch={fetchTasks}
+        />
+      )}
     </>
   );
 };
