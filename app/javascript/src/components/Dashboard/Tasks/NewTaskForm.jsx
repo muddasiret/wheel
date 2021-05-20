@@ -2,12 +2,17 @@ import React from "react";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
 import { Input, Textarea, Select } from "neetoui/formik";
-import { Button } from "neetoui";
+import { Button, Switch } from "neetoui";
 
 const tagValues = [
   { value: "Internal", label: "Internal" },
   { value: "Agile Workflow", label: "Agile Workflow" },
   { value: "Bug", label: "Bug" },
+];
+
+const contacts = [
+  { value: "Karthik Menon", label: "Karthik Menon" },
+  { value: "MS Dhoni", label: "MS Dhoni" },
 ];
 
 export default function NewTaskForm({ onClose }) {
@@ -19,6 +24,7 @@ export default function NewTaskForm({ onClose }) {
       initialValues={{
         title: "",
         description: "",
+        showDueDateField: true,
       }}
       onSubmit={handleSubmit}
       validationSchema={yup.object({
@@ -27,16 +33,11 @@ export default function NewTaskForm({ onClose }) {
         tag: yup.object().required("Tag is required"),
       })}
     >
-      {({ isSubmitting }) => (
-        <Form>
+      {({ isSubmitting, values }) => (
+        <Form className="pb-10">
           <Input label="Title" name="title" className="mb-6" />
-          <Textarea
-            label="Description"
-            name="description"
-            rows={8}
-            className="mb-6"
-          />
           <Select
+            className="mb-6"
             label="Tags"
             defaultValue={null}
             placeholder="Select a tag"
@@ -46,6 +47,35 @@ export default function NewTaskForm({ onClose }) {
             name="tag"
             options={tagValues}
           />
+          <Textarea
+            label="Description"
+            name="description"
+            rows={8}
+            className="mb-6"
+          />
+          <Select
+            label="Assigned Contact"
+            defaultValue={null}
+            placeholder="Select a contact"
+            isDisabled={false}
+            isClearable={true}
+            isSearchable={true}
+            name="assigned_contact"
+            options={contacts}
+            className="mb-6"
+          />
+          <div className="flex justify-between items-center mb-3">
+            <p>Add Due Date to Note</p>
+            <Switch name="showDueDateField" />
+          </div>
+          {values.showDueDateField && (
+            <Input
+              type="date"
+              label="Due Date"
+              name="due_date"
+              className="mb-10"
+            />
+          )}
           <div className="nui-pane__footer nui-pane__footer--absolute">
             <Button
               onClick={onClose}
