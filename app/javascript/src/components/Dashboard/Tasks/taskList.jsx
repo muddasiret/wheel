@@ -93,7 +93,7 @@ export default function TaskList({
               </td>
               <td>{task.desc}</td>
               <td className="text-center">
-                <Badge color="red">{task.tag}</Badge>
+                <Badge color={task.tagColor}>{task.tag}</Badge>
               </td>
               <td className="text-center">{task.date_created}</td>
               <td className="text-center">
