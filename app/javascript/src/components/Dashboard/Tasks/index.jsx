@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, PageLoader } from "neetoui";
+import { Button, PageLoader, Toastr } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
@@ -48,6 +48,20 @@ const Tasks = () => {
   const fetchTasks = () => {
     setTasks(initTasks);
     setLoading(false);
+  };
+
+  const deleteTasks = () => {
+    let tempTaskList = [...tasks];
+    const taskSelected = selectedTaskIds;
+    taskSelected.forEach(taskId => {
+      var index = tempTaskList.findIndex(task => {
+        return task.id === taskId;
+      });
+      if (index !== -1) tempTaskList.splice(index, 1);
+    });
+    setTasks(tempTaskList);
+    setShowDeleteAlert(false);
+    Toastr.success("Task was deleted successfully");
   };
 
   useEffect(() => {
@@ -115,7 +129,8 @@ const Tasks = () => {
         <DeleteTaskAlert
           selectedTaskIds={selectedTaskIds}
           onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchTasks}
+          fetchTasks={fetchTasks}
+          deleteTasks={deleteTasks}
         />
       )}
     </>
