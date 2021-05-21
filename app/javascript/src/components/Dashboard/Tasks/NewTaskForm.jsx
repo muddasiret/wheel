@@ -15,10 +15,12 @@ const contacts = [
   { value: "MS Dhoni", label: "MS Dhoni" },
 ];
 
-export default function NewTaskForm({ onClose }) {
-  const handleSubmit = () => {
-    alert("form submitted");
+export default function NewTaskForm({ onClose, addTasks }) {
+  const handleSubmit = async values => {
+    addTasks(values);
+    onClose();
   };
+
   return (
     <Formik
       initialValues={{
@@ -32,6 +34,7 @@ export default function NewTaskForm({ onClose }) {
         title: yup.string().required("Title is required"),
         description: yup.string().required("Description is required"),
         tag: yup.object().required("Tag is required"),
+        dueDate: yup.date().required("Date is required"),
       })}
     >
       {({ isSubmitting, values, setFieldValue }) => (
