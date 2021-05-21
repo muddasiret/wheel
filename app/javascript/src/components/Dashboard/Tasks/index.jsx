@@ -3,7 +3,7 @@ import { Button, PageLoader, Toastr } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
-import TaskList from "./TaskList";
+import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
 import DeleteTaskAlert from "./DeleteTaskAlert";
 
@@ -109,6 +109,7 @@ const Tasks = () => {
             selectedTaskIds={selectedTaskIds}
             setSelectedTaskIds={setSelectedTaskIds}
             tasks={tasks}
+            setShowDeleteAlert={setShowDeleteAlert}
           />
         </>
       ) : (

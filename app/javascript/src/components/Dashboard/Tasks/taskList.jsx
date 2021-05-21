@@ -1,14 +1,31 @@
 import React from "react";
-import { Checkbox, Badge, Avatar } from "neetoui";
+import { Checkbox, Badge, Avatar, Tooltip } from "neetoui";
+import deleteBtn from "images/DeleteButton";
 
 export default function TaskList({
   selectedTaskIds,
   setSelectedTaskIds,
+  setShowDeleteAlert,
   tasks = [],
 }) {
+  const handleDelete = taskIds => {
+    setSelectedTaskIds([taskIds]);
+    setShowDeleteAlert(true);
+  };
+
+  const deleteButton = taskid => {
+    return (
+      <Tooltip content="Delete Task" position="bottom">
+        <div className="mx-1" onClick={() => handleDelete(taskid)}>
+          <img src={deleteBtn} alt="deletebutton" />
+        </div>
+      </Tooltip>
+    );
+  };
+
   return (
     <div className="w-full px-14">
-      <table className="nui-table nui-table--checkbox">
+      <table className="nui-table nui-table--actions">
         <thead>
           <tr>
             <th>
@@ -73,6 +90,9 @@ export default function TaskList({
               </td>
               <td className="flex flex-row items-center justify-center">
                 <Avatar size={36} contact={{ name: task.contact }} />
+              </td>
+              <td>
+                <div className="flex">{deleteButton(task.id)}</div>
               </td>
             </tr>
           ))}
