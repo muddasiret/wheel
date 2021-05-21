@@ -1,6 +1,7 @@
 import React from "react";
 import { Checkbox, Badge, Avatar, Tooltip } from "neetoui";
 import deleteBtn from "images/DeleteButton";
+import editBtn from "images/EditButton";
 
 export default function TaskList({
   selectedTaskIds,
@@ -16,8 +17,18 @@ export default function TaskList({
   const deleteButton = taskid => {
     return (
       <Tooltip content="Delete Task" position="bottom">
-        <div className="mx-1" onClick={() => handleDelete(taskid)}>
+        <div onClick={() => handleDelete(taskid)}>
           <img src={deleteBtn} alt="deletebutton" />
+        </div>
+      </Tooltip>
+    );
+  };
+
+  const editButton = () => {
+    return (
+      <Tooltip className="mx-2" content="Edit Task" position="bottom">
+        <div>
+          <img src={editBtn} alt="edit button" />
         </div>
       </Tooltip>
     );
@@ -92,7 +103,10 @@ export default function TaskList({
                 <Avatar size={36} contact={{ name: task.contact }} />
               </td>
               <td>
-                <div className="flex">{deleteButton(task.id)}</div>
+                <div className="flex">
+                  {editButton()}
+                  {deleteButton(task.id)}
+                </div>
               </td>
             </tr>
           ))}
