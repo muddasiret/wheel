@@ -2,7 +2,7 @@ import React from "react";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
 import { Input, Textarea, Select } from "neetoui/formik";
-import { Button, Switch } from "neetoui";
+import { Button, Switch, DateInput } from "neetoui";
 
 const tagValues = [
   { value: "Internal", label: "Internal" },
@@ -24,7 +24,8 @@ export default function NewTaskForm({ onClose }) {
       initialValues={{
         title: "",
         description: "",
-        showDueDateField: true,
+        showDueDateField: false,
+        dueDate: new Date(),
       }}
       onSubmit={handleSubmit}
       validationSchema={yup.object({
@@ -33,7 +34,7 @@ export default function NewTaskForm({ onClose }) {
         tag: yup.object().required("Tag is required"),
       })}
     >
-      {({ isSubmitting, values }) => (
+      {({ isSubmitting, values, setFieldValue }) => (
         <Form className="pb-10">
           <Input label="Title" name="title" className="mb-6" />
           <Select
@@ -66,14 +67,21 @@ export default function NewTaskForm({ onClose }) {
           />
           <div className="flex justify-between items-center mb-3">
             <p>Add Due Date to Note</p>
-            <Switch name="showDueDateField" />
+            <Switch
+              checked={values.showDueDateField}
+              onChange={() =>
+                setFieldValue("showDueDateField", !values.showDueDateField)
+              }
+              name="showDueDateField"
+            />
           </div>
           {values.showDueDateField && (
-            <Input
-              type="date"
+            <DateInput
               label="Due Date"
-              name="due_date"
+              name="dueDate"
               className="mb-10"
+              minDate={new Date()}
+              defaultValue={new Date()}
             />
           )}
           <div className="nui-pane__footer nui-pane__footer--absolute">
