@@ -129,7 +129,6 @@ const Tasks = () => {
         <DeleteTaskAlert
           selectedTaskIds={selectedTaskIds}
           onClose={() => setShowDeleteAlert(false)}
-          fetchTasks={fetchTasks}
           deleteTasks={deleteTasks}
         />
       )}
