@@ -5,9 +5,9 @@ import { Input, Textarea, Select } from "neetoui/formik";
 import { Button, Switch, DateInput } from "neetoui";
 
 const tagValues = [
-  { value: "Internal", label: "Internal" },
-  { value: "Agile Workflow", label: "Agile Workflow" },
-  { value: "Bug", label: "Bug" },
+  { value: "Internal", label: "Internal", color: "blue" },
+  { value: "Agile Workflow", label: "Agile Workflow", color: "green" },
+  { value: "Bug", label: "Bug", color: "red" },
 ];
 
 const contacts = [
@@ -27,6 +27,8 @@ export default function NewTaskForm({ onClose, addTasks }) {
         title: "",
         description: "",
         showDueDateField: false,
+        tag: { value: "Internal", label: "Internal", color: "blue" },
+        assignedContact: { value: "Karthik Menon", label: "Karthik Menon" },
         dueDate: new Date(),
       }}
       onSubmit={handleSubmit}
@@ -43,10 +45,8 @@ export default function NewTaskForm({ onClose, addTasks }) {
           <Select
             className="mb-6"
             label="Tags"
-            defaultValue={null}
             placeholder="Select a tag"
             isDisabled={false}
-            isClearable={true}
             isSearchable={true}
             name="tag"
             options={tagValues}
@@ -59,12 +59,10 @@ export default function NewTaskForm({ onClose, addTasks }) {
           />
           <Select
             label="Assigned Contact"
-            defaultValue={null}
             placeholder="Select a contact"
             isDisabled={false}
-            isClearable={true}
             isSearchable={true}
-            name="assigned_contact"
+            name="assignedContact"
             options={contacts}
             className="mb-6"
           />

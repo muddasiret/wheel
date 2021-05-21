@@ -60,15 +60,16 @@ const Tasks = () => {
       title: newTaskValues.title,
       desc: newTaskValues.description,
       tag: newTaskValues.tag.value,
-      tagColor: "blue",
+      tagColor: newTaskValues.tag.color,
       due_date: newTaskValues.showDueDateField
         ? moment(newTaskValues.dueDate).format("MMM-DD-YYYY")
         : "",
       date_created: moment(new Date()).format("MMM-DD-YYYY"),
-      contact: newTaskValues.assigned_contact.value,
+      contact: newTaskValues.assignedContact.value,
     };
     const newTaskList = [...tasks, newTask];
     setTasks(newTaskList);
+    Toastr.success("Task has been successfully added");
   };
 
   const deleteTasks = () => {
