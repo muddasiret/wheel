@@ -18,7 +18,8 @@ gem "webpacker"
 gem "react-rails"
 
 # database
-gem "pg"
+gem 'sqlite3', '~> 1.4', group: [:development, :test]
+gem 'pg', group: [:production]
 
 # Application server
 gem "puma"
