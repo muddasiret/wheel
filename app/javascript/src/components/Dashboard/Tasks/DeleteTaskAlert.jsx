@@ -1,10 +1,14 @@
 import React from "react";
 import { Modal } from "neetoui";
 
-export default function DeleteTaskAlert({ onClose, selectedTaskIds }) {
+export default function DeleteTaskAlert({
+  onClose,
+  selectedTaskIds,
+  deleteTasks,
+}) {
   //   const [deleting, setDeleting] = useState(false);
   const handleDelete = async () => {
-    alert("delete");
+    deleteTasks();
   };
   return (
     <Modal

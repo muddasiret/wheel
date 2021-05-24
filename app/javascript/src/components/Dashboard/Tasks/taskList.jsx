@@ -1,14 +1,42 @@
 import React from "react";
-import { Checkbox, Badge, Avatar } from "neetoui";
+import { Checkbox, Badge, Avatar, Tooltip } from "neetoui";
+import deleteBtn from "images/DeleteButton";
+import editBtn from "images/EditButton";
 
 export default function TaskList({
   selectedTaskIds,
   setSelectedTaskIds,
+  setShowDeleteAlert,
   tasks = [],
 }) {
+  const handleDelete = taskIds => {
+    setSelectedTaskIds([taskIds]);
+    setShowDeleteAlert(true);
+  };
+
+  const deleteButton = taskid => {
+    return (
+      <Tooltip content="Delete Task" position="bottom">
+        <div onClick={() => handleDelete(taskid)}>
+          <img src={deleteBtn} alt="deletebutton" />
+        </div>
+      </Tooltip>
+    );
+  };
+
+  const editButton = () => {
+    return (
+      <Tooltip className="mx-2" content="Edit Task" position="bottom">
+        <div>
+          <img src={editBtn} alt="edit button" />
+        </div>
+      </Tooltip>
+    );
+  };
+
   return (
     <div className="w-full px-14">
-      <table className="nui-table nui-table--checkbox">
+      <table className="nui-table nui-table--actions">
         <thead>
           <tr>
             <th>
@@ -65,7 +93,7 @@ export default function TaskList({
               </td>
               <td>{task.desc}</td>
               <td className="text-center">
-                <Badge color="red">{task.tag}</Badge>
+                <Badge color={task.tagColor}>{task.tag}</Badge>
               </td>
               <td className="text-center">{task.date_created}</td>
               <td className="text-center">
@@ -73,6 +101,12 @@ export default function TaskList({
               </td>
               <td className="flex flex-row items-center justify-center">
                 <Avatar size={36} contact={{ name: task.contact }} />
+              </td>
+              <td>
+                <div className="flex">
+                  {editButton()}
+                  {deleteButton(task.id)}
+                </div>
               </td>
             </tr>
           ))}

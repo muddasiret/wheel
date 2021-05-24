@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Button, PageLoader } from "neetoui";
+import { Button, PageLoader, Toastr } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
-import TaskList from "./TaskList";
+import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
 import DeleteTaskAlert from "./DeleteTaskAlert";
 
@@ -13,6 +13,7 @@ const initTasks = [
     title: "Change support email",
     desc: "forward all internal mails...",
     tag: "Internal",
+    tagColor: "blue",
     due_date: "Apr 10, 2021",
     date_created: "Apr 10, 2021",
     contact: "N S",
@@ -22,6 +23,7 @@ const initTasks = [
     title: "Feedback",
     desc: "Feedback V1.0",
     tag: "Agile Workflow",
+    tagColor: "green",
     due_date: "Apr 10, 2021",
     date_created: "Apr 10, 2021",
     contact: "M A",
@@ -31,6 +33,7 @@ const initTasks = [
     title: "Feedback Hover",
     desc: "Feedback V2.0......",
     tag: "Bug",
+    tagColor: "red",
     due_date: "",
     date_created: "Apr 10, 2021",
     contact: "N S",
@@ -48,6 +51,20 @@ const Tasks = () => {
   const fetchTasks = () => {
     setTasks(initTasks);
     setLoading(false);
+  };
+
+  const deleteTasks = () => {
+    let tempTaskList = [...tasks];
+    const taskSelected = selectedTaskIds;
+    taskSelected.forEach(taskId => {
+      var index = tempTaskList.findIndex(task => {
+        return task.id === taskId;
+      });
+      if (index !== -1) tempTaskList.splice(index, 1);
+    });
+    setTasks(tempTaskList);
+    setShowDeleteAlert(false);
+    Toastr.success("Task was deleted successfully");
   };
 
   useEffect(() => {
@@ -95,6 +112,7 @@ const Tasks = () => {
             selectedTaskIds={selectedTaskIds}
             setSelectedTaskIds={setSelectedTaskIds}
             tasks={tasks}
+            setShowDeleteAlert={setShowDeleteAlert}
           />
         </>
       ) : (
@@ -115,7 +133,7 @@ const Tasks = () => {
         <DeleteTaskAlert
           selectedTaskIds={selectedTaskIds}
           onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchTasks}
+          deleteTasks={deleteTasks}
         />
       )}
     </>
