@@ -2,12 +2,12 @@ import React from "react";
 import * as yup from "yup";
 import { Formik, Form } from "formik";
 import { Input, Textarea, Select } from "neetoui/formik";
-import { Button, Switch } from "neetoui";
+import { Button, Switch, DateInput } from "neetoui";
 
 const tagValues = [
-  { value: "Internal", label: "Internal" },
-  { value: "Agile Workflow", label: "Agile Workflow" },
-  { value: "Bug", label: "Bug" },
+  { value: "Internal", label: "Internal", color: "blue" },
+  { value: "Agile Workflow", label: "Agile Workflow", color: "green" },
+  { value: "Bug", label: "Bug", color: "red" },
 ];
 
 const contacts = [
@@ -15,34 +15,38 @@ const contacts = [
   { value: "MS Dhoni", label: "MS Dhoni" },
 ];
 
-export default function NewTaskForm({ onClose }) {
-  const handleSubmit = () => {
-    alert("form submitted");
+export default function NewTaskForm({ onClose, addTasks }) {
+  const handleSubmit = async values => {
+    addTasks(values);
+    onClose();
   };
+
   return (
     <Formik
       initialValues={{
         title: "",
         description: "",
-        showDueDateField: true,
+        showDueDateField: false,
+        tag: { value: "Internal", label: "Internal", color: "blue" },
+        assignedContact: { value: "Karthik Menon", label: "Karthik Menon" },
+        dueDate: new Date(),
       }}
       onSubmit={handleSubmit}
       validationSchema={yup.object({
         title: yup.string().required("Title is required"),
         description: yup.string().required("Description is required"),
         tag: yup.object().required("Tag is required"),
+        dueDate: yup.date().required("Date is required"),
       })}
     >
-      {({ isSubmitting, values }) => (
+      {({ isSubmitting, values, setFieldValue }) => (
         <Form className="pb-10">
           <Input label="Title" name="title" className="mb-6" />
           <Select
             className="mb-6"
             label="Tags"
-            defaultValue={null}
             placeholder="Select a tag"
             isDisabled={false}
-            isClearable={true}
             isSearchable={true}
             name="tag"
             options={tagValues}
@@ -55,25 +59,30 @@ export default function NewTaskForm({ onClose }) {
           />
           <Select
             label="Assigned Contact"
-            defaultValue={null}
             placeholder="Select a contact"
             isDisabled={false}
-            isClearable={true}
             isSearchable={true}
-            name="assigned_contact"
+            name="assignedContact"
             options={contacts}
             className="mb-6"
           />
           <div className="flex justify-between items-center mb-3">
             <p>Add Due Date to Note</p>
-            <Switch name="showDueDateField" />
+            <Switch
+              checked={values.showDueDateField}
+              onChange={() =>
+                setFieldValue("showDueDateField", !values.showDueDateField)
+              }
+              name="showDueDateField"
+            />
           </div>
           {values.showDueDateField && (
-            <Input
-              type="date"
+            <DateInput
               label="Due Date"
-              name="due_date"
+              name="dueDate"
               className="mb-10"
+              minDate={new Date()}
+              defaultValue={new Date()}
             />
           )}
           <div className="nui-pane__footer nui-pane__footer--absolute">

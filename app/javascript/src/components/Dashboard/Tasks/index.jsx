@@ -6,6 +6,7 @@ import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
 import DeleteTaskAlert from "./DeleteTaskAlert";
+import moment from "moment";
 
 const initTasks = [
   {
@@ -53,6 +54,24 @@ const Tasks = () => {
     setLoading(false);
   };
 
+  const addTasks = newTaskValues => {
+    let newTask = {
+      id: tasks.length + 1,
+      title: newTaskValues.title,
+      desc: newTaskValues.description,
+      tag: newTaskValues.tag.value,
+      tagColor: newTaskValues.tag.color,
+      due_date: newTaskValues.showDueDateField
+        ? moment(newTaskValues.dueDate).format("MMM-DD-YYYY")
+        : "",
+      date_created: moment(new Date()).format("MMM-DD-YYYY"),
+      contact: newTaskValues.assignedContact.value,
+    };
+    const newTaskList = [...tasks, newTask];
+    setTasks(newTaskList);
+    Toastr.success("Task has been successfully added");
+  };
+
   const deleteTasks = () => {
     let tempTaskList = [...tasks];
     const taskSelected = selectedTaskIds;
@@ -64,6 +83,7 @@ const Tasks = () => {
     });
     setTasks(tempTaskList);
     setShowDeleteAlert(false);
+    setSelectedTaskIds([]);
     Toastr.success("Task was deleted successfully");
   };
 
@@ -128,6 +148,7 @@ const Tasks = () => {
         showPane={showNewTaskPane}
         setShowPane={setShowNewTaskPane}
         fetchTasks={fetchTasks}
+        addTasks={addTasks}
       />
       {showDeleteAlert && (
         <DeleteTaskAlert
