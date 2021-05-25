@@ -95,9 +95,9 @@ export default function ContactList({
                     color="green"
                     className="mr-3"
                     size={36}
-                    contact={{ name: contact.title }}
+                    contact={{ name: contact.name }}
                   />
-                  {contact.title}
+                  {contact.name}
                 </div>
               </td>
               <td>{contact.email}</td>

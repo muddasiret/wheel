@@ -5,11 +5,12 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import ContactList from "./ContactList";
 import DeleteAlert from "components/Common/DeleteAlert";
+import NewContactPane from "./NewContactPane";
 
 const initContacts = [
   {
     id: 1,
-    title: "Neeraj Singh",
+    name: "Neeraj Singh",
     email: "neeraj@bigbinary.com",
     department: "Engineering",
     contact: "(555)-390-102",
@@ -17,7 +18,7 @@ const initContacts = [
   },
   {
     id: 2,
-    title: "Vinay Chandran",
+    name: "Vinay Chandran",
     email: "vinay@bigbinary.com",
     department: "Engineering",
     contact: "(555)-390-102",
@@ -31,10 +32,25 @@ const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [selectedContactIds, setSelectedContactIds] = useState([]);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [showNewContactPane, setShowNewContactPane] = useState(false);
 
   const fetchContacts = () => {
     setContacts(initContacts);
     setLoading(false);
+  };
+
+  const addContacts = newContactValues => {
+    let newContact = {
+      id: contacts.length + 1,
+      name: newContactValues.name,
+      email: newContactValues.email,
+      department: newContactValues.department.value,
+      contact: newContactValues.contact,
+      add_to_basecamp: newContactValues.add_to_basecamp,
+    };
+    const newContactList = [...contacts, newContact];
+    setContacts(newContactList);
+    Toastr.success("Task has been successfully added");
   };
 
   const deleteTasks = () => {
@@ -65,7 +81,7 @@ const Contacts = () => {
         title="Contacts"
         actionBlock={
           <Button
-            onClick={() => null}
+            onClick={() => setShowNewContactPane(true)}
             label="Add New Contact"
             icon="ri-add-line"
           />
@@ -106,8 +122,14 @@ const Contacts = () => {
           title="Looks like you don't have any Contacts!"
           subtitle=""
           primaryActionLabel="Add New Contact"
+          primaryAction={() => setShowNewContactPane(true)}
         />
       )}
+      <NewContactPane
+        showPane={showNewContactPane}
+        setShowPane={setShowNewContactPane}
+        addContacts={addContacts}
+      />
       {showDeleteAlert && (
         <DeleteAlert
           selectedIds={selectedContactIds}
