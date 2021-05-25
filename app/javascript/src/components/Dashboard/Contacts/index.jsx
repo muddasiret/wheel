@@ -103,7 +103,7 @@ const Contacts = () => {
             sortProps={{
               options: [
                 { value: "Name", label: "Name" },
-                { value: "Tag", label: "Tag" },
+                { value: "Department", label: "Department" },
               ],
               onClick: () => "",
             }}
