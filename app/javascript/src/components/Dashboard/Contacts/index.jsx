@@ -82,7 +82,7 @@ const Contacts = () => {
         actionBlock={
           <Button
             onClick={() => setShowNewContactPane(true)}
-            label="Add New Contact"
+            label="New Contact"
             icon="ri-add-line"
           />
         }

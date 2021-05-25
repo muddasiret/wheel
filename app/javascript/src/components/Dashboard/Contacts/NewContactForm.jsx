@@ -27,7 +27,10 @@ export default function NewContactForm({ onClose, addContacts }) {
       onSubmit={handleSubmit}
       validationSchema={yup.object({
         name: yup.string().required("Title is required"),
-        email: yup.string().required("Email is required"),
+        email: yup
+          .string()
+          .email("Invalid email")
+          .required("Email is required"),
         contact: yup.string().required("Contact is required"),
       })}
     >
