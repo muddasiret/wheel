@@ -7,6 +7,7 @@ import PasswordEdit from "./Account/Passwords/Edit";
 import Profile from "./Account/Profile";
 import Notes from "./Notes";
 import Tasks from "./Tasks";
+import Contacts from "./Contacts";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Navbar />
       <div className="flex flex-col items-start justify-start flex-grow h-screen overflow-y-auto">
         <Switch>
+          <Route exact path="/contacts" component={Contacts} />
           <Route exact path="/tasks" component={Tasks} />
           <Route exact path="/notes" component={Notes} />
           <Route exact path="/my/password/edit" component={PasswordEdit} />
