@@ -53,7 +53,7 @@ const Contacts = () => {
     Toastr.success("Task has been successfully added");
   };
 
-  const deleteTasks = () => {
+  const deleteContacts = () => {
     let tempContactList = [...contacts];
     const taskSelected = selectedContactIds;
     taskSelected.forEach(contactId => {
@@ -134,7 +134,7 @@ const Contacts = () => {
         <DeleteAlert
           selectedIds={selectedContactIds}
           onClose={() => setShowDeleteAlert(false)}
-          deleteIds={deleteTasks}
+          deleteIds={deleteContacts}
           title="contacts"
         />
       )}

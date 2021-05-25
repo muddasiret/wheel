@@ -5,8 +5,8 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
-import DeleteTaskAlert from "./DeleteTaskAlert";
 import moment from "moment";
+import DeleteAlert from "components/Common/DeleteAlert";
 
 const initTasks = [
   {
@@ -151,10 +151,11 @@ const Tasks = () => {
         addTasks={addTasks}
       />
       {showDeleteAlert && (
-        <DeleteTaskAlert
-          selectedTaskIds={selectedTaskIds}
+        <DeleteAlert
+          selectedIds={selectedTaskIds}
           onClose={() => setShowDeleteAlert(false)}
-          deleteTasks={deleteTasks}
+          deleteIds={deleteTasks}
+          title="tasks"
         />
       )}
     </>
