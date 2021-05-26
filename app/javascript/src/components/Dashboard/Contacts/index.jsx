@@ -133,8 +133,6 @@ const Contacts = () => {
         title="Delete Contacts?"
         message={`Are you sure you want to delete ${selectedContactIds.length} contacts? All of your data will be permanently removed from our database forever. This action cannot be undone.`}
         hideConfirmation
-        style="danger"
-        icon="ri-alert-line text-red-500"
         isOpen={showDeleteAlert}
         submitButtonProps={{
           onClick: deleteContacts,
