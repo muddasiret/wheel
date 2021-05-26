@@ -36,8 +36,7 @@ export default function NewTaskForm({ onClose, addTasks }) {
             className="mb-6"
             label="Tags"
             placeholder="Select a tag"
-            isDisabled={false}
-            isSearchable={true}
+            isSearchable
             name="tag"
             options={tagValues}
           />
@@ -50,8 +49,7 @@ export default function NewTaskForm({ onClose, addTasks }) {
           <Select
             label="Assigned Contact"
             placeholder="Select a contact"
-            isDisabled={false}
-            isSearchable={true}
+            isSearchable
             name="assignedContact"
             options={contacts}
             className="mb-6"

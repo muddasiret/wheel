@@ -39,8 +39,7 @@ export default function NewContactForm({ onClose, addContacts }) {
             className="mb-6"
             label="Tags"
             placeholder="Select a department"
-            isDisabled={false}
-            isSearchable={true}
+            isSearchable
             name="department"
             options={departmentValues}
           />
