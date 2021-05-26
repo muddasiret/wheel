@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button, PageLoader, Toastr } from "neetoui";
+import { Button, PageLoader, Toastr, Alert } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
 import moment from "moment";
-import DeleteAlert from "components/Common/DeleteAlert";
 
 const initTasks = [
   {
@@ -150,14 +149,18 @@ const Tasks = () => {
         fetchTasks={fetchTasks}
         addTasks={addTasks}
       />
-      {showDeleteAlert && (
-        <DeleteAlert
-          selectedIds={selectedTaskIds}
-          onClose={() => setShowDeleteAlert(false)}
-          deleteIds={deleteTasks}
-          title="tasks"
-        />
-      )}
+      <Alert
+        title="Delete Tasks?"
+        message={`Are you sure you want to delete ${selectedTaskIds.length} tasks? All of your data will be permanently removed from our database forever. This action cannot be undone.`}
+        hideConfirmation
+        isOpen={showDeleteAlert}
+        submitButtonProps={{
+          onClick: deleteTasks,
+        }}
+        cancelButtonProps={{
+          onClick: () => setShowDeleteAlert(false),
+        }}
+      />
     </>
   );
 };
