@@ -5,25 +5,7 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import ContactList from "./ContactList";
 import NewContactPane from "./NewContactPane";
-
-const initContacts = [
-  {
-    id: 1,
-    name: "Neeraj Singh",
-    email: "neeraj@bigbinary.com",
-    department: "Engineering",
-    contact: "(555)-390-102",
-    add_to_basecamp: true,
-  },
-  {
-    id: 2,
-    name: "Vinay Chandran",
-    email: "vinay@bigbinary.com",
-    department: "Engineering",
-    contact: "(555)-390-102",
-    add_to_basecamp: false,
-  },
-];
+import { initContacts } from "../constants";
 
 const Contacts = () => {
   const [loading, setLoading] = useState(true);

@@ -6,39 +6,7 @@ import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
 import moment from "moment";
-
-const initTasks = [
-  {
-    id: 1,
-    title: "Change support email",
-    desc: "forward all internal mails...",
-    tag: "Internal",
-    tagColor: "blue",
-    due_date: "Apr 10, 2021",
-    date_created: "Apr 10, 2021",
-    contact: "N S",
-  },
-  {
-    id: 2,
-    title: "Feedback",
-    desc: "Feedback V1.0",
-    tag: "Agile Workflow",
-    tagColor: "green",
-    due_date: "Apr 10, 2021",
-    date_created: "Apr 10, 2021",
-    contact: "M A",
-  },
-  {
-    id: 3,
-    title: "Feedback Hover",
-    desc: "Feedback V2.0......",
-    tag: "Bug",
-    tagColor: "red",
-    due_date: "",
-    date_created: "Apr 10, 2021",
-    contact: "N S",
-  },
-];
+import { initTasks } from "../constants";
 
 const Tasks = () => {
   const [loading, setLoading] = useState(true);
