@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Avatar, Tooltip } from "neetoui";
+import { Checkbox, Avatar, Tooltip, Button } from "neetoui";
 import deleteBtn from "images/DeleteButton";
 import editBtn from "images/EditButton";
 
@@ -97,7 +97,7 @@ export default function ContactList({
                     size={36}
                     contact={{ name: contact.name }}
                   />
-                  {contact.name}
+                  <Button label={contact.name} style="link" />
                 </div>
               </td>
               <td>{contact.email}</td>

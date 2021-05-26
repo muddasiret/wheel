@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Badge, Avatar, Tooltip } from "neetoui";
+import { Checkbox, Badge, Avatar, Tooltip, Button } from "neetoui";
 import deleteBtn from "images/DeleteButton";
 import editBtn from "images/EditButton";
 
@@ -88,7 +88,7 @@ export default function TaskList({
               </td>
               <td>
                 <div className="flex text-purple-500 flex-row items-center justify-start text-gray-900">
-                  {task.title}
+                  <Button label={task.title} style="link" />
                 </div>
               </td>
               <td>{task.desc}</td>
