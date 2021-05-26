@@ -3,11 +3,7 @@ import * as yup from "yup";
 import { Formik, Form } from "formik";
 import { Input, Select } from "neetoui/formik";
 import { Button, Switch } from "neetoui";
-
-const departmentValues = [
-  { value: "Engineering", label: "Engineering" },
-  { value: "QA", label: "QA" },
-];
+import { departmentValues } from "../constants";
 
 export default function NewContactForm({ onClose, addContacts }) {
   const handleSubmit = async values => {

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Button, PageLoader, Toastr } from "neetoui";
+import { Button, PageLoader, Toastr, Alert } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import ContactList from "./ContactList";
-import DeleteAlert from "components/Common/DeleteAlert";
 import NewContactPane from "./NewContactPane";
 
 const initContacts = [
@@ -130,14 +129,20 @@ const Contacts = () => {
         setShowPane={setShowNewContactPane}
         addContacts={addContacts}
       />
-      {showDeleteAlert && (
-        <DeleteAlert
-          selectedIds={selectedContactIds}
-          onClose={() => setShowDeleteAlert(false)}
-          deleteIds={deleteContacts}
-          title="contacts"
-        />
-      )}
+      <Alert
+        title="Delete Contacts?"
+        message={`Are you sure you want to delete ${selectedContactIds.length} contacts? All of your data will be permanently removed from our database forever. This action cannot be undone.`}
+        hideConfirmation
+        style="danger"
+        icon="ri-alert-line text-red-500"
+        isOpen={showDeleteAlert}
+        submitButtonProps={{
+          onClick: deleteContacts,
+        }}
+        cancelButtonProps={{
+          onClick: () => setShowDeleteAlert(false),
+        }}
+      />
     </>
   );
 };
