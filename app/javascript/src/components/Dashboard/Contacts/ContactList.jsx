@@ -1,7 +1,5 @@
 import React from "react";
 import { Checkbox, Avatar, Tooltip, Button } from "neetoui";
-import deleteBtn from "images/DeleteButton";
-import editBtn from "images/EditButton";
 
 export default function ContactList({
   selectedContactIds,
@@ -18,7 +16,7 @@ export default function ContactList({
     return (
       <Tooltip content="Delete Contact" position="bottom">
         <div onClick={() => handleDelete(contactId)}>
-          <img src={deleteBtn} alt="deletebutton" />
+          <Button icon="ri-delete-bin-line" style="icon" />
         </div>
       </Tooltip>
     );
@@ -28,7 +26,7 @@ export default function ContactList({
     return (
       <Tooltip className="mx-2" content="Edit Contact" position="bottom">
         <div>
-          <img src={editBtn} alt="edit button" />
+          <Button icon="ri-pencil-line" style="icon" />
         </div>
       </Tooltip>
     );
