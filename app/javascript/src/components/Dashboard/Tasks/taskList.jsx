@@ -34,7 +34,7 @@ export default function TaskList({
 
   return (
     <div className="w-full px-14">
-      <table className="nui-table nui-table--actions">
+      <table className="nui-table nui-table--hover nui-table--avatar">
         <thead>
           <tr>
             <th>
