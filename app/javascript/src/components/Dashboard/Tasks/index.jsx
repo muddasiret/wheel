@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button, PageLoader, Toastr, Alert } from "neetoui";
+import dayjs from "dayjs";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
-import moment from "moment";
 import { initTasks } from "../constants";
 
 const Tasks = () => {
@@ -29,9 +29,9 @@ const Tasks = () => {
       tag: newTaskValues.tag.value,
       tagColor: newTaskValues.tag.color,
       due_date: newTaskValues.showDueDateField
-        ? moment(newTaskValues.dueDate).format("MMM-DD-YYYY")
+        ? dayjs(newTaskValues.dueDate).format("MMM-DD-YYYY")
         : "",
-      date_created: moment(new Date()).format("MMM-DD-YYYY"),
+      date_created: dayjs(new Date()).format("MMM-DD-YYYY"),
       contact: newTaskValues.assignedContact.value,
     };
     const newTaskList = [...tasks, newTask];
