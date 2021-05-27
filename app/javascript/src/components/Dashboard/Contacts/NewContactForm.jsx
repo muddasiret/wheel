@@ -31,12 +31,11 @@ export default function NewContactForm({ onClose, addContacts }) {
       })}
     >
       {({ isSubmitting, values, setFieldValue }) => (
-        <Form className="pb-10">
-          <Input label="Name" name="name" className="mb-6" />
-          <Input label="Email" name="email" className="mb-6" />
-          <Input label="Contact Number" name="contact" className="mb-6" />
+        <Form className="pb-10 space-y-6">
+          <Input label="Name" name="name" />
+          <Input label="Email" name="email" />
+          <Input label="Contact Number" name="contact" />
           <Select
-            className="mb-6"
             label="Tags"
             placeholder="Select a department"
             isSearchable
