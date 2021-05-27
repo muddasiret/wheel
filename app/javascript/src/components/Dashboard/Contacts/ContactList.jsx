@@ -12,26 +12,6 @@ export default function ContactList({
     setShowDeleteAlert(true);
   };
 
-  const deleteButton = contactId => {
-    return (
-      <Tooltip content="Delete Contact" position="bottom">
-        <div onClick={() => handleDelete(contactId)}>
-          <Button icon="ri-delete-bin-line" style="icon" />
-        </div>
-      </Tooltip>
-    );
-  };
-
-  const editButton = () => {
-    return (
-      <Tooltip className="mx-2" content="Edit Contact" position="bottom">
-        <div>
-          <Button icon="ri-pencil-line" style="icon" />
-        </div>
-      </Tooltip>
-    );
-  };
-
   return (
     <div className="w-full px-14">
       <table className="nui-table nui-table--actions">
@@ -111,8 +91,20 @@ export default function ContactList({
               </td>
               <td>
                 <div className="flex">
-                  {editButton()}
-                  {deleteButton(contact.id)}
+                  <Tooltip
+                    className="mx-2"
+                    content="Edit Contact"
+                    position="bottom"
+                  >
+                    <div>
+                      <Button icon="ri-pencil-line" style="icon" />
+                    </div>
+                  </Tooltip>
+                  <Tooltip content="Delete Contact" position="bottom">
+                    <div onClick={() => handleDelete(contact.id)}>
+                      <Button icon="ri-delete-bin-line" style="icon" />
+                    </div>
+                  </Tooltip>
                 </div>
               </td>
             </tr>
