@@ -38,6 +38,7 @@ export default function ContactList({
             <th className="text-left text-gray-300">Department</th>
             <th className="text-left text-gray-300">Contact number</th>
             <th className="text-left text-gray-300 pr-0">Add to basecamp</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
