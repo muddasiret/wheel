@@ -933,7 +933,7 @@
     to-fast-properties "^2.0.0"
 
 "@bigbinary/neetoui@^1.0.27":
-  version "1.20.5"
+  version "1.0.27"
   resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-1.20.5.tgz#7e55896149b875f235adf723d6cfce105410f9eb"
   integrity sha512-nvAUMrW39+7F/+rqoXgG5fZvZ7fw+iE3NoJ3bVSxF607UeLyTnkw3KF3USEumwQ+k/hJTo9OyJ9MnyiWlK6ezw==
   dependencies:
