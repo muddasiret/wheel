@@ -37,7 +37,7 @@ export default function ContactList({
             <th className="text-left text-gray-300">Email</th>
             <th className="text-left text-gray-300">Department</th>
             <th className="text-left text-gray-300">Contact number</th>
-            <th className="text-left text-gray-300 pr-0">Add to basecamp</th>
+            <th className="text-center text-gray-300 pr-0">Add to basecamp</th>
             <th></th>
           </tr>
         </thead>
@@ -82,7 +82,7 @@ export default function ContactList({
               <td>{contact.email}</td>
               <td>{contact.department}</td>
               <td>{contact.contact}</td>
-              <td>
+              <td className="checkbox-center-align">
                 <div className="flex flex-row items-center justify-center text-gray-900">
                   <Checkbox
                     name="basecamp_added"

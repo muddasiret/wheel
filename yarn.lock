@@ -933,9 +933,9 @@
     to-fast-properties "^2.0.0"
 
 "@bigbinary/neetoui@~1.0.27":
-  version "1.0.44"
-  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-1.0.44.tgz#d02cfa65357650bc4afb7e3d6086a633a5d6596d"
-  integrity sha512-hWkHr0EYId5sz9B4C3wuacSpfOwj6Cg6cnXS0VLmh3bmc1NWqEHq5FJomIWuDq/7QUDOeWDnLXVPC8krNJdmJA==
+  version "1.0.27"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neetoui/-/neetoui-1.0.27.tgz#757c5fcf831585576639e80f54d9edbf456302a6"
+  integrity sha512-IqPdcOQ5tc22AmGLZCmnPJHRBPuTQ3Ibj5xALjC42k2ib3tKEb6jWOGqGe3ZbVh7ZVB7UlVEstpaI0+fL/ZLNw==
   dependencies:
     "@reach/auto-id" "^0.15.0"
     "@tailwindcss/forms" "^0.3.2"
