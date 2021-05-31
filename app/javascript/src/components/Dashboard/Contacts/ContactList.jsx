@@ -14,7 +14,7 @@ export default function ContactList({
 
   return (
     <div className="w-full px-14">
-      <table className="nui-table nui-table--actions">
+      <table className="nui-table nui-table--actions nui-table--hover">
         <thead>
           <tr>
             <th>
