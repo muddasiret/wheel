@@ -84,10 +84,12 @@ export default function ContactList({
               <td>{contact.contact}</td>
               <td className="checkbox-center-align">
                 <div className="flex flex-row items-center justify-center text-gray-900">
-                  <Checkbox
-                    name="basecamp_added"
-                    checked={contact.add_to_basecamp}
-                  />
+                  <div>
+                    <Checkbox
+                      name="basecamp_added"
+                      checked={contact.add_to_basecamp}
+                    />
+                  </div>
                 </div>
               </td>
               <td>
