@@ -43,10 +43,7 @@ export default function ContactList({
         </thead>
         <tbody>
           {contacts.map(contact => (
-            <tr
-              key={contact.id}
-              className={"cursor-pointer bg-white hover:bg-gray-50"}
-            >
+            <tr key={contact.id}>
               <td>
                 <Checkbox
                   checked={selectedContactIds.includes(contact.id)}
