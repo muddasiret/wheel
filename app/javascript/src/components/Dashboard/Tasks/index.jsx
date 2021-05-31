@@ -1,45 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, PageLoader, Toastr } from "neetoui";
+import { Button, PageLoader, Toastr, Alert } from "neetoui";
+import dayjs from "dayjs";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import TaskList from "./taskList";
 import NewTaskPane from "./NewTaskPane";
-import DeleteTaskAlert from "./DeleteTaskAlert";
-import moment from "moment";
-
-const initTasks = [
-  {
-    id: 1,
-    title: "Change support email",
-    desc: "forward all internal mails...",
-    tag: "Internal",
-    tagColor: "blue",
-    due_date: "Apr 10, 2021",
-    date_created: "Apr 10, 2021",
-    contact: "N S",
-  },
-  {
-    id: 2,
-    title: "Feedback",
-    desc: "Feedback V1.0",
-    tag: "Agile Workflow",
-    tagColor: "green",
-    due_date: "Apr 10, 2021",
-    date_created: "Apr 10, 2021",
-    contact: "M A",
-  },
-  {
-    id: 3,
-    title: "Feedback Hover",
-    desc: "Feedback V2.0......",
-    tag: "Bug",
-    tagColor: "red",
-    due_date: "",
-    date_created: "Apr 10, 2021",
-    contact: "N S",
-  },
-];
+import { initTasks } from "../constants";
 
 const Tasks = () => {
   const [loading, setLoading] = useState(true);
@@ -62,9 +29,9 @@ const Tasks = () => {
       tag: newTaskValues.tag.value,
       tagColor: newTaskValues.tag.color,
       due_date: newTaskValues.showDueDateField
-        ? moment(newTaskValues.dueDate).format("MMM-DD-YYYY")
+        ? dayjs(newTaskValues.dueDate).format("MMM-DD-YYYY")
         : "",
-      date_created: moment(new Date()).format("MMM-DD-YYYY"),
+      date_created: dayjs(new Date()).format("MMM-DD-YYYY"),
       contact: newTaskValues.assignedContact.value,
     };
     const newTaskList = [...tasks, newTask];
@@ -150,13 +117,18 @@ const Tasks = () => {
         fetchTasks={fetchTasks}
         addTasks={addTasks}
       />
-      {showDeleteAlert && (
-        <DeleteTaskAlert
-          selectedTaskIds={selectedTaskIds}
-          onClose={() => setShowDeleteAlert(false)}
-          deleteTasks={deleteTasks}
-        />
-      )}
+      <Alert
+        title="Delete Tasks?"
+        message={`Are you sure you want to delete ${selectedTaskIds.length} tasks? All of your data will be permanently removed from our database forever. This action cannot be undone.`}
+        hideConfirmation
+        isOpen={showDeleteAlert}
+        submitButtonProps={{
+          onClick: deleteTasks,
+        }}
+        cancelButtonProps={{
+          onClick: () => setShowDeleteAlert(false),
+        }}
+      />
     </>
   );
 };

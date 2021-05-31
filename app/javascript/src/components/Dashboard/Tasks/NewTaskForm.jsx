@@ -3,17 +3,7 @@ import * as yup from "yup";
 import { Formik, Form } from "formik";
 import { Input, Textarea, Select } from "neetoui/formik";
 import { Button, Switch, DateInput } from "neetoui";
-
-const tagValues = [
-  { value: "Internal", label: "Internal", color: "blue" },
-  { value: "Agile Workflow", label: "Agile Workflow", color: "green" },
-  { value: "Bug", label: "Bug", color: "red" },
-];
-
-const contacts = [
-  { value: "Karthik Menon", label: "Karthik Menon" },
-  { value: "MS Dhoni", label: "MS Dhoni" },
-];
+import { contacts, tagValues } from "../constants";
 
 export default function NewTaskForm({ onClose, addTasks }) {
   const handleSubmit = async values => {
@@ -46,8 +36,7 @@ export default function NewTaskForm({ onClose, addTasks }) {
             className="mb-6"
             label="Tags"
             placeholder="Select a tag"
-            isDisabled={false}
-            isSearchable={true}
+            isSearchable
             name="tag"
             options={tagValues}
           />
@@ -60,8 +49,7 @@ export default function NewTaskForm({ onClose, addTasks }) {
           <Select
             label="Assigned Contact"
             placeholder="Select a contact"
-            isDisabled={false}
-            isSearchable={true}
+            isSearchable
             name="assignedContact"
             options={contacts}
             className="mb-6"

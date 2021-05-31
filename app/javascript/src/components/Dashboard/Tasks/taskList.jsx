@@ -1,7 +1,5 @@
 import React from "react";
-import { Checkbox, Badge, Avatar, Tooltip } from "neetoui";
-import deleteBtn from "images/DeleteButton";
-import editBtn from "images/EditButton";
+import { Checkbox, Badge, Avatar, Tooltip, Button } from "neetoui";
 
 export default function TaskList({
   selectedTaskIds,
@@ -14,29 +12,9 @@ export default function TaskList({
     setShowDeleteAlert(true);
   };
 
-  const deleteButton = taskid => {
-    return (
-      <Tooltip content="Delete Task" position="bottom">
-        <div onClick={() => handleDelete(taskid)}>
-          <img src={deleteBtn} alt="deletebutton" />
-        </div>
-      </Tooltip>
-    );
-  };
-
-  const editButton = () => {
-    return (
-      <Tooltip className="mx-2" content="Edit Task" position="bottom">
-        <div>
-          <img src={editBtn} alt="edit button" />
-        </div>
-      </Tooltip>
-    );
-  };
-
   return (
     <div className="w-full px-14">
-      <table className="nui-table nui-table--actions">
+      <table className="nui-table  nui-table--actions nui-table--hover nui-table--avatar">
         <thead>
           <tr>
             <th>
@@ -88,7 +66,7 @@ export default function TaskList({
               </td>
               <td>
                 <div className="flex text-purple-500 flex-row items-center justify-start text-gray-900">
-                  {task.title}
+                  <Button label={task.title} style="link" />
                 </div>
               </td>
               <td>{task.desc}</td>
@@ -104,8 +82,20 @@ export default function TaskList({
               </td>
               <td>
                 <div className="flex">
-                  {editButton()}
-                  {deleteButton(task.id)}
+                  <Tooltip content="Delete Task" position="bottom">
+                    <div onClick={() => handleDelete(task.id)}>
+                      <Button icon="ri-delete-bin-line" style="icon" />
+                    </div>
+                  </Tooltip>
+                  <Tooltip
+                    className="mx-2"
+                    content="Edit Task"
+                    position="bottom"
+                  >
+                    <div>
+                      <Button icon="ri-pencil-line" style="icon" />
+                    </div>
+                  </Tooltip>
                 </div>
               </td>
             </tr>
